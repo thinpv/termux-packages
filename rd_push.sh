@@ -7,4 +7,4 @@ adb push rd/rd.sh /data/rd
 adb push rd/mosquitto.sh /data/rd
 adb push rd/mosquitto.conf /data/rd
 adb push rd/rd_init_android.sh /data/rd
-adb shell su -c /data/rd/rd_init_android.sh
+#adb shell su -c /data/rd/rd_init_android.sh
