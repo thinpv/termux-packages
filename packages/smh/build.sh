@@ -19,5 +19,5 @@ termux_step_make() {
 
 termux_step_make_install() {
 	pwd
-	install -Dm600 smh_HC/smh $TERMUX_PREFIX/bin
+	install -Dm755 smh_HC/smh $TERMUX_PREFIX/bin
 }

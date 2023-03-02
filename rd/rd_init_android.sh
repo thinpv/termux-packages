@@ -1,5 +1,5 @@
 #!/system/bin/sh
-tar -xzvf /data/rd/rd.tar.gz -C /data/rd
+tar -xzf /data/rd/rd.tar.gz -C /data/rd
 mount -o rw,remount /system
 rm -rf /system/rd
 mv rd/ /system/

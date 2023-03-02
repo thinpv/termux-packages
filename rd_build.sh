@@ -4,4 +4,5 @@
 ./build-package.sh -a arm vim
 ./build-package.sh -a arm libmosquitto
 ./build-package.sh -a arm libsqlite
-tar -czvf rd.tar.gz /system/rd
+./build-package.sh -a arm smh
+tar -czf rd.tar.gz /system/rd
