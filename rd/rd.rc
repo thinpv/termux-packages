@@ -1,7 +1,7 @@
 #/etc/init/custom.rc
 
 # define service, use executable here if script not needed
-service rd_sv /system/bin/rd.sh
+service rd_sv /system/rd/bin/rd.sh
 
     # don't start unless explicitly asked to
     disabled
@@ -14,7 +14,7 @@ service rd_sv /system/bin/rd.sh
     seclabel u:r:su:s0
 
 # define service, use executable here if script not needed
-service mosquitto_sv /system/bin/mosquitto.sh
+service mosquitto_sv /system/rd/bin/mosquitto.sh
 
     # don't start unless explicitly asked to
     disabled

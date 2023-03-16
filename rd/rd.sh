@@ -1,4 +1,4 @@
 #!/system/bin/sh
 
 setenforce 0
-smh
+/system/rd/bin/smh

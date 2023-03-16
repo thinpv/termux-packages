@@ -1,3 +1,3 @@
 #!/system/bin/sh
 
-mosquitto -c /etc/mosquitto/mosquitto.conf
+/system/rd/sbin/mosquitto -c /etc/mosquitto/mosquitto.conf
