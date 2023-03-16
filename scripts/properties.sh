@@ -30,9 +30,9 @@ else
 fi
 
 # Termux packages configuration.
-TERMUX_APP_PACKAGE="system"
-TERMUX_BASE_DIR="/${TERMUX_APP_PACKAGE}"
-TERMUX_CACHE_DIR="/${TERMUX_APP_PACKAGE}/cache"
+TERMUX_APP_PACKAGE="rd"
+TERMUX_BASE_DIR="/system/${TERMUX_APP_PACKAGE}"
+TERMUX_CACHE_DIR="/system/${TERMUX_APP_PACKAGE}/cache"
 TERMUX_ANDROID_HOME="${TERMUX_BASE_DIR}/data/rd"
 TERMUX_APPS_DIR="${TERMUX_BASE_DIR}/app"
 TERMUX_PREFIX="${TERMUX_BASE_DIR}"
@@ -40,7 +40,7 @@ TERMUX_PREFIX="${TERMUX_BASE_DIR}"
 # Package name for the packages hosted on the repo.
 # This must only equal TERMUX_APP_PACKAGE if using custom repo that
 # has packages that were built with same package name.
-TERMUX_REPO_PACKAGE="system"
+TERMUX_REPO_PACKAGE="rd"
 
 # Termux repo urls.
 TERMUX_REPO_URL=(
