@@ -1,6 +1,7 @@
 #!/bin/sh
 
 git submodule update --init --recursive
+./build-package.sh -a arm lvgl
 ./build-package.sh -a arm openssh
 ./build-package.sh -a arm vim
 ./build-package.sh -a arm libmosquitto

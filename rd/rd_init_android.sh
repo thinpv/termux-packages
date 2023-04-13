@@ -7,6 +7,9 @@ cp system/* /system/ -r
 cp /data/rd/rd.rc /etc/init
 chmod 644 /etc/init/rd.rc
 
+cp /data/rd/lvgl.sh /system/rd/bin
+chmod +x /system/rd/bin/lvgl.sh
+
 cp /data/rd/rd.sh /system/rd/bin
 chmod +x /system/rd/bin/rd.sh
 

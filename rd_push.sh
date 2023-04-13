@@ -3,6 +3,7 @@
 adb shell su -c mkdir /data/rd
 adb push rd.tar.gz /data/rd
 adb push rd/rd.rc /data/rd
+adb push rd/lvgl.sh /data/rd
 adb push rd/rd.sh /data/rd
 adb push rd/mosquitto.sh /data/rd
 adb push rd/mosquitto.conf /data/rd
