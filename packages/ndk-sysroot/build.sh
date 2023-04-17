@@ -86,7 +86,7 @@ termux_step_make_install() {
 
 	mkdir -p $TERMUX_PKG_MASSAGEDIR/$TERMUX_PREFIX/lib
 	# clang 13 requires libunwind on Android.
-	cp toolchains/llvm/prebuilt/linux-x86_64/lib64/clang/14.0.7/lib/linux/$NDK_ARCH/libunwind.a \
+	cp toolchains/llvm/prebuilt/linux-x86_64/lib64/clang/12.0.9/lib/linux/$NDK_ARCH/libunwind.a \
 		$TERMUX_PKG_MASSAGEDIR/$TERMUX_PREFIX/lib
 	for lib in librt.so libpthread.so libutil.so; do
 		echo 'INPUT(-lc)' > $TERMUX_PKG_MASSAGEDIR/$TERMUX_PREFIX/lib/$lib
