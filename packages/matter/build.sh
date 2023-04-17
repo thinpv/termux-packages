@@ -13,8 +13,8 @@ termux_step_configure() {
 		git clone --recurse-submodules https://github.com/project-chip/connectedhomeip.git $TERMUX_PKG_BUILDER_DIR/connectedhomeip
 	fi
 	if [ ! -d "$TERMUX_PKG_BUILDDIR/connectedhomeip" ]; then
-		# ln -s $TERMUX_PKG_BUILDER_DIR/connectedhomeip $TERMUX_PKG_BUILDDIR/connectedhomeip
-		cp -a $TERMUX_PKG_BUILDER_DIR/connectedhomeip $TERMUX_PKG_BUILDDIR
+		ln -s $TERMUX_PKG_BUILDER_DIR/connectedhomeip $TERMUX_PKG_BUILDDIR/connectedhomeip
+		# cp -a $TERMUX_PKG_BUILDER_DIR/connectedhomeip $TERMUX_PKG_BUILDDIR
 	fi
 	echo "termux_step_configure end"
 }
