@@ -54,8 +54,8 @@ termux_step_make() {
 	# gn gen out/debug --args='is_clang=true target_cpu="arm" target_os="linux"'
 	# gn gen out/debug --args='is_clang=true target_cpu="arm" sysroot="/home/builder/lib/android-ndk-r23c/toolchains/llvm/prebuilt/linux-x86_64/sysroot"'
 	# gn gen out/debug --args='host_toolchain="android" is_clang=true target_cpu="arm" target_os="linux" sysroot="/home/builder/lib/android-ndk-r23c/toolchains/llvm/prebuilt/linux-x86_64/sysroot"'
-	gn gen out/debug --args='host_toolchain="custom" is_clang=true target_cpu="arm" target_os="linux" sysroot="/home/builder/lib/android-ndk-r23c/toolchains/llvm/prebuilt/linux-x86_64/sysroot"'
-	gn gen out/debug --args='is_clang=true target_cpu="arm" target_os="android" sysroot="/home/builder/lib/android-ndk-r23c/toolchains/llvm/prebuilt/linux-x86_64/sysroot"'
+	# gn gen out/debug --args='host_toolchain="custom" is_clang=true target_cpu="arm" target_os="linux" sysroot="/home/builder/lib/android-ndk-r23c/toolchains/llvm/prebuilt/linux-x86_64/sysroot"'
+	gn gen out/debug --args='target_cpu="arm" target_os="android" chip_enable_wifi=false chip_config_network_layer_ble=false sysroot="/home/builder/lib/android-ndk-r23c/toolchains/llvm/prebuilt/linux-x86_64/sysroot"'
 	
 	echo "ninja -C out/debug start"
 	termux_setup_ninja
