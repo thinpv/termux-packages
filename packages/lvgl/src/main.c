@@ -10,6 +10,8 @@
 
 #define DISP_BUF_SIZE (128 * 1024)
 
+extern int mqtt_init(void);
+
 int main(void)
 {
     /*LittlevGL init*/
@@ -31,7 +33,7 @@ int main(void)
     disp_drv.draw_buf   = &disp_buf;
     disp_drv.flush_cb   = fbdev_flush;
     disp_drv.hor_res    = 240;
-    disp_drv.ver_res    = 204;
+    disp_drv.ver_res    = 240;
     lv_disp_drv_register(&disp_drv);
 
     evdev_init();
@@ -43,18 +45,9 @@ int main(void)
     indev_drv_1.read_cb = evdev_read;
     lv_indev_t *mouse_indev = lv_indev_drv_register(&indev_drv_1);
 
-
-    // /*Set a cursor for the mouse*/
-    // LV_IMG_DECLARE(mouse_cursor_icon)
-    // lv_obj_t * cursor_obj = lv_img_create(lv_scr_act()); /*Create an image object for the cursor */
-    // lv_img_set_src(cursor_obj, &mouse_cursor_icon);           /*Set the image source*/
-    // lv_indev_set_cursor(mouse_indev, cursor_obj);             /*Connect the image  object to the driver*/
-
-
-    /*Create a Demo*/
-    // lv_demo_widgets();
-
     ui_init();
+
+    mqtt_init();
 
     /*Handle LitlevGL tasks (tickless mode)*/
     while(1) {
