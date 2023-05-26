@@ -4,6 +4,27 @@
 // Project name: Smartwatch
 
 #include "ui_helpers.h"
+#include <stdio.h>
+
+extern void send_change_screen_event(int index);
+
+void change_screen(int index)
+{
+	if(index == 1)
+		lv_scr_load_anim(ui_scr1, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, false);
+	else if(index == 2)
+		lv_scr_load_anim(ui_scr2, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, false);
+	else if(index == 3)
+		lv_scr_load_anim(ui_scr3, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, false);
+	else if(index == 4)
+		lv_scr_load_anim(ui_scr4, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, false);
+	else if(index == 5)
+		lv_scr_load_anim(ui_scr5, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, false);
+	else if(index == 6)
+		lv_scr_load_anim(ui_scr6, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0, false);
+	else
+		printf("screen index from 1 to 6\n");
+}
 
 void _ui_bar_set_property(lv_obj_t * target, int id, int val)
 {
@@ -48,6 +69,18 @@ void _ui_slider_set_property(lv_obj_t * target, int id, int val)
 
 void _ui_screen_change(lv_obj_t * target, lv_scr_load_anim_t fademode, int spd, int delay)
 {
+    if(target == ui_scr1)
+        send_change_screen_event(1);
+    else if(target == ui_scr2)
+        send_change_screen_event(2);
+    else if(target == ui_scr3)
+        send_change_screen_event(3);
+    else if(target == ui_scr4)
+        send_change_screen_event(4);
+    else if(target == ui_scr5)
+        send_change_screen_event(5);
+    else if(target == ui_scr6)
+        send_change_screen_event(6);
     lv_scr_load_anim(target, fademode, spd, delay, false);
 }
 

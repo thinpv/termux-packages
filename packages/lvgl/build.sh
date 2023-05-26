@@ -2,7 +2,7 @@ TERMUX_PKG_HOMEPAGE=rangdong.com.vn
 TERMUX_PKG_DESCRIPTION="Ralli Android HC small sceen"
 TERMUX_PKG_LICENSE="MIT License"
 TERMUX_PKG_VERSION=2.0.0
-TERMUX_PKG_DEPENDS="mosquitto"
+TERMUX_PKG_DEPENDS="mosquitto, json-c"
 TERMUX_PKG_BUILD_IN_SRC=true
 
 termux_step_configure() {

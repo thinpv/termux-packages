@@ -8,9 +8,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <json-c/json.h>
 
 #define HC_TO_LCD_TOPIC "/hc/lcd"
 #define LCD_TO_HC_TOPIC "/lcd/hc"
+
+extern void change_screen(int index);
 
 /* Callback called when the client receives a CONNACK message from the broker. */
 void on_connect(struct mosquitto *mosq, void *obj, int reason_code)
@@ -63,18 +66,59 @@ void on_subscribe(struct mosquitto *mosq, void *obj, int mid, int qos_count, con
 	}
 }
 
-
+static struct json_object *jsonObj, *cmdObj, *dataObj, *indexObj;
+static char *cmd;
+static int index;
 /* Callback called when the client receives a message. */
 void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_message *msg)
 {
 	/* This blindly prints the payload, but the payload can be anything so take care. */
 	printf("%s %d %s\n", msg->topic, msg->qos, (char *)msg->payload);
+	if(strcmp(HC_TO_LCD_TOPIC, msg->topic) == 0)
+	{
+		jsonObj = json_tokener_parse(msg->payload);
+		if(jsonObj)
+		{
+			cmdObj = json_object_object_get(jsonObj, "cmd");
+			dataObj = json_object_object_get(jsonObj, "data");
+			if (cmdObj && json_object_is_type(cmdObj, json_type_string) && 
+					dataObj && json_object_is_type(dataObj, json_type_object))
+			{
+				cmd = (char*)json_object_get_string(cmdObj);
+				if(strcmp("ChangeScreen", cmd) == 0)
+				{
+					indexObj = json_object_object_get(jsonObj, "index");
+					if (indexObj && json_object_is_type(indexObj, json_type_int))
+					{
+						index = json_object_get_int(indexObj);
+						change_screen(index);
+					}
+					else 
+					{
+						printf("data format error\n");
+					}
+				}
+				else 
+				{
+					printf("cmd not match: %s\n", cmd);
+				}
+			}
+			else 
+			{
+				printf("data format error\n");
+			}
+			json_object_put(jsonObj);
+		}
+		else 
+		{
+			printf("json parsing error\n");
+		}
+	}
 }
 
-
+static struct mosquitto *mosq;
 int mqtt_init(void)
 {
-	struct mosquitto *mosq;
 	int rc;
 
 	/* Required before calling other mosquitto functions */
@@ -117,4 +161,21 @@ int mqtt_init(void)
 
 	mosquitto_lib_cleanup();
 	return 0;
+}
+
+static struct json_object *sendJsonObj = NULL;
+static struct json_object *sendDataObj = NULL;
+void send_change_screen_event(int index)
+{
+	if(sendJsonObj == NULL || sendDataObj == NULL)
+	{
+		sendJsonObj = json_object_new_object();
+		sendDataObj = json_object_new_object();
+		json_object_object_add(sendJsonObj, "cmd", json_object_new_string("ChangeScreen"));
+		json_object_object_add(sendJsonObj, "data", sendDataObj);
+	}
+	json_object_object_add(sendDataObj, "index", json_object_new_int(index));
+	const char* str = json_object_to_json_string_ext(sendJsonObj, JSON_C_TO_STRING_SPACED | JSON_C_TO_STRING_PRETTY);
+	printf("publish: %s\n", str);
+	mosquitto_publish(mosq, NULL, LCD_TO_HC_TOPIC, strlen(str), str, 0, false);
 }
