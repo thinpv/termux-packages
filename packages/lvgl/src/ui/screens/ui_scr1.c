@@ -9,12 +9,6 @@ void ui_scr1_screen_init(void)
 {
     ui_scr1 = lv_obj_create(NULL);
     lv_obj_clear_flag(ui_scr1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_color(ui_scr1, lv_color_hex(0x0E1325), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui_scr1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_grad_color(ui_scr1, lv_color_hex(0x112200), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_main_stop(ui_scr1, 130, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_grad_stop(ui_scr1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_grad_dir(ui_scr1, LV_GRAD_DIR_NONE, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_bg_1 = lv_img_create(ui_scr1);
     lv_img_set_src(ui_bg_1, &ui_img_sreen1_png);

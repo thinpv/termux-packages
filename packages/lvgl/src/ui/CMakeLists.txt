@@ -1,10 +1,12 @@
-SET(SOURCES screens/ui_scr1.c
+SET(SOURCES screens/ui_sflash.c
+    screens/ui_scr1.c
     screens/ui_scr2.c
     screens/ui_scr3.c
     screens/ui_scr4.c
     screens/ui_scr5.c
     ui.c
     ui_helpers.c
+    images/ui_img_flash_png.c
     images/ui_img_sreen1_png.c
     images/ui_img_sreen2_png.c
     images/ui_img_sreen3_png.c

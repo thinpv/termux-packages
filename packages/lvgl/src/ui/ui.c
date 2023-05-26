@@ -20,6 +20,12 @@ void blood2_Animation(lv_obj_t * TargetObject, int delay);
 void blood1_Animation(lv_obj_t * TargetObject, int delay);
 void heart_Animation(lv_obj_t * TargetObject, int delay);
 
+// SCREEN: ui_sflash
+void ui_sflash_screen_init(void);
+void ui_event_sflash(lv_event_t * e);
+lv_obj_t * ui_sflash;
+lv_obj_t * ui_bg_sflash;
+
 // SCREEN: ui_scr1
 void ui_scr1_screen_init(void);
 void ui_event_scr1(lv_event_t * e);
@@ -379,6 +385,15 @@ void heart_Animation(lv_obj_t * TargetObject, int delay)
 }
 
 ///////////////////// FUNCTIONS ////////////////////
+void ui_event_sflash(lv_event_t * e)
+{
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
+    if(event_code == LV_EVENT_GESTURE &&  lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_LEFT) {
+        lv_indev_wait_release(lv_indev_get_act());
+        _ui_screen_change(ui_scr1, LV_SCR_LOAD_ANIM_FADE_ON, 500, 0);
+    }
+}
 void ui_event_scr1(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
@@ -465,6 +480,7 @@ void ui_init(void)
     lv_disp_t * dispp = lv_disp_get_default();
     lv_theme_t * theme = lv_theme_basic_init(dispp);
     lv_disp_set_theme(dispp, theme);
+    ui_sflash_screen_init();
     ui_scr1_screen_init();
     ui_scr2_screen_init();
     ui_scr3_screen_init();
@@ -472,5 +488,5 @@ void ui_init(void)
     ui_scr5_screen_init();
     ui_scr6_screen_init();
     ui____initial_actions0 = lv_obj_create(NULL);
-    lv_disp_load_scr(ui_scr1);
+    lv_disp_load_scr(ui_sflash);
 }

@@ -26,6 +26,11 @@ void cloud_Animation(lv_obj_t * TargetObject, int delay);
 void blood2_Animation(lv_obj_t * TargetObject, int delay);
 void blood1_Animation(lv_obj_t * TargetObject, int delay);
 void heart_Animation(lv_obj_t * TargetObject, int delay);
+// SCREEN: ui_sflash
+void ui_sflash_screen_init(void);
+void ui_event_sflash(lv_event_t * e);
+extern lv_obj_t * ui_sflash;
+extern lv_obj_t * ui_bg_sflash;
 // SCREEN: ui_scr1
 void ui_scr1_screen_init(void);
 void ui_event_scr1(lv_event_t * e);
@@ -58,6 +63,7 @@ extern lv_obj_t * ui_scr6;
 extern lv_obj_t * ui_bg_6;
 extern lv_obj_t * ui____initial_actions0;
 
+LV_IMG_DECLARE(ui_img_flash_png);    // assets\flash.png
 LV_IMG_DECLARE(ui_img_sreen1_png);    // assets\sreen1.png
 LV_IMG_DECLARE(ui_img_sreen2_png);    // assets\sreen2.png
 LV_IMG_DECLARE(ui_img_sreen3_png);    // assets\sreen3.png
