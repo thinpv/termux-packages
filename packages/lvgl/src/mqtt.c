@@ -87,7 +87,7 @@ void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_messag
 				cmd = (char*)json_object_get_string(cmdObj);
 				if(strcmp("ChangeScreen", cmd) == 0)
 				{
-					indexObj = json_object_object_get(jsonObj, "index");
+					indexObj = json_object_object_get(dataObj, "index");
 					if (indexObj && json_object_is_type(indexObj, json_type_int))
 					{
 						index = json_object_get_int(indexObj);
@@ -140,26 +140,26 @@ int mqtt_init(void)
 	mosquitto_subscribe_callback_set(mosq, on_subscribe);
 	mosquitto_message_callback_set(mosq, on_message);
 
-	/* Connect to test.mosquitto.org on port 1883, with a keepalive of 60 seconds.
-	 * This call makes the socket connection only, it does not complete the MQTT
-	 * CONNECT/CONNACK flow, you should use mosquitto_loop_start() or
-	 * mosquitto_loop_forever() for processing net traffic. */
-	rc = mosquitto_connect(mosq, "localhost", 1883, 60);
-	if(rc != MOSQ_ERR_SUCCESS){
-		mosquitto_destroy(mosq);
-		fprintf(stderr, "Error: %s\n", mosquitto_strerror(rc));
-		return 1;
-	}
-
 	/* Run the network loop in a blocking call. The only thing we do in this
 	 * example is to print incoming messages, so a blocking call here is fine.
 	 *
 	 * This call will continue forever, carrying automatic reconnections if
 	 * necessary, until the user calls mosquitto_disconnect().
 	 */
-	mosquitto_loop_forever(mosq, -1, 1);
+	mosquitto_loop_start(mosq);//, -1, 1);
 
-	mosquitto_lib_cleanup();
+	/* Connect to test.mosquitto.org on port 1883, with a keepalive of 60 seconds.
+	 * This call makes the socket connection only, it does not complete the MQTT
+	 * CONNECT/CONNACK flow, you should use mosquitto_loop_start() or
+	 * mosquitto_loop_forever() for processing net traffic. */
+	rc = mosquitto_connect_async(mosq, "localhost", 1883, 60);
+	if(rc != MOSQ_ERR_SUCCESS){
+		mosquitto_destroy(mosq);
+		fprintf(stderr, "Error: %s\n", mosquitto_strerror(rc));
+		return 1;
+	}
+
+	// mosquitto_lib_cleanup();
 	return 0;
 }
 
