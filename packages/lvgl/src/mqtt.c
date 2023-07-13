@@ -68,7 +68,7 @@ void on_subscribe(struct mosquitto *mosq, void *obj, int mid, int qos_count, con
 
 static struct json_object *jsonObj, *cmdObj, *dataObj, *indexObj;
 static char *cmd;
-static int index;
+static int index = 0;
 /* Callback called when the client receives a message. */
 void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_message *msg)
 {
@@ -90,8 +90,12 @@ void on_message(struct mosquitto *mosq, void *obj, const struct mosquitto_messag
 					indexObj = json_object_object_get(dataObj, "index");
 					if (indexObj && json_object_is_type(indexObj, json_type_int))
 					{
-						index = json_object_get_int(indexObj);
-						change_screen(index);
+						int indexTemp = json_object_get_int(indexObj);
+						if(indexTemp != index)
+						{
+							index = indexTemp;
+							change_screen(index);
+						}
 					}
 					else 
 					{

@@ -1,3 +1,3 @@
 #!/system/bin/sh
 
-/system/rd/bin/demo_s8
+/system/bin/demo_s8
