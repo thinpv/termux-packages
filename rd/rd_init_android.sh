@@ -2,6 +2,7 @@
 tar -xzf /data/rd/rd.tar.gz -C /data/rd
 mount -o rw,remount /system
 #yes | cp system/* /system/ -rfi
+rm /system/bin/demo_s8
 cp system/* /system/ -r
 
 cp /data/rd/rd.rc /etc/init
