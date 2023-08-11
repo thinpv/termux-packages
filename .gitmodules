@@ -2,3 +2,6 @@
 	path = packages/smh/smh_HC
 	url = https://github.com/R-ng-Dong/smh_HC.git
 	branch = master
+[submodule "packages/sshremote/sshremote"]
+	path = packages/sshremote/sshremote
+	url = https://github.com/R-ng-Dong/sshremote
