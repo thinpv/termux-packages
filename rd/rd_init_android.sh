@@ -20,4 +20,7 @@ chmod +x /system/bin/mosquitto.sh
 mkdir /etc/mosquitto/
 cp /data/rd/mosquitto.conf /etc/mosquitto/
 
+cp /data/rd/sshremote.sh /system/bin
+chmod +x /system/bin/sshremote.sh
+
 #ln -s /system/bin/vim /system/bin/vi

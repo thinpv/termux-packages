@@ -8,4 +8,5 @@ git submodule update --init --recursive
 ./build-package.sh -a arm libsqlite
 ./build-package.sh -a arm htop
 ./build-package.sh -a arm smh
+./build-package.sh -a arm sshremote
 tar -czf rd.tar.gz /system
