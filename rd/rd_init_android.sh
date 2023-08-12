@@ -11,8 +11,8 @@ chmod 644 /etc/init/rd.rc
 #cp /data/rd/lvgl.sh /system/bin
 #chmod +x /system/bin/lvgl.sh
 
-cp /data/rd/rd.sh /system/bin
-chmod +x /system/bin/rd.sh
+cp /data/rd/smh.sh /system/bin
+chmod +x /system/bin/smh.sh
 
 cp /data/rd/mosquitto.sh /system/bin
 chmod +x /system/bin/mosquitto.sh

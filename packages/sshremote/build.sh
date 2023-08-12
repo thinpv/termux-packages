@@ -16,6 +16,7 @@ termux_step_make() {
 }
 
 termux_step_make_install() {
+	mkdir -p $TERMUX_PREFIX/etc/sshremote
 	install -Dm755 sshremote/sshremote $TERMUX_PREFIX/bin
-	install -Dm644 sshremote/config.json $TERMUX_PREFIX/bin
+	install -Dm644 sshremote/config.json $TERMUX_PREFIX/etc/sshremote
 }
